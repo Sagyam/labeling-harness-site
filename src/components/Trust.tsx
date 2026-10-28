@@ -1,5 +1,4 @@
 import { DatabaseZap, FileCheck2, History, Receipt, ShieldCheck } from "lucide-react"
-import { Badge } from "@/components/ui/badge"
 import { SectionHeading } from "@/components/SectionHeading"
 
 const guarantees = [
@@ -30,21 +29,6 @@ const guarantees = [
   },
 ]
 
-const stack = [
-  "Python 3.13",
-  "FastAPI",
-  "SQLAlchemy",
-  "Alembic",
-  "PostgreSQL",
-  "React 19",
-  "TypeScript",
-  "Vite",
-  "shadcn/ui",
-  "ONNX Runtime",
-  "Modal GPUs",
-  "Docker Compose",
-]
-
 export function Trust() {
   return (
     <section id="trust" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
@@ -60,21 +44,6 @@ export function Trust() {
           </li>
         ))}
       </ul>
-
-      <div className="mt-20 max-w-3xl">
-        <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Stack</h3>
-        <ul className="mt-5 flex flex-wrap gap-2">
-          {stack.map((tech) => (
-            <li key={tech}>
-              <Badge className="h-6 bg-teal-ink px-2.5 text-teal">{tech}</Badge>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-          ONNX Runtime handles forced alignment and voice prints on the CPU; speaker diarization runs on Modal GPUs.
-          Recognisers: ElevenLabs, Microsoft and Google, with a reasoning model to fuse their drafts.
-        </p>
-      </div>
     </section>
   )
 }

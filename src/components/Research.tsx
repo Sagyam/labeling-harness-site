@@ -39,7 +39,7 @@ function WerBar({ label, value, tone }: { label: string; value: number; tone: "m
 
 export function Research() {
   return (
-    <section id="research" className="border-y border-white/5 bg-white/[0.015]">
+    <section id="research">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:items-center">
         <div>
           <SectionHeading eyebrow="Case study: Nepanglish" title="Nepali sentences full of English words.">

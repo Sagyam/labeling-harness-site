@@ -9,6 +9,7 @@ import { KeyboardSection } from "@/components/Keyboard"
 import { Research } from "@/components/Research"
 import { type Shot, Tour } from "@/components/Tour"
 import { Trust } from "@/components/Trust"
+import { Architecture } from "@/components/Architecture"
 import heroPoster from "@/assets/hero-poster.png"
 import analytics from "@/assets/screens/analytics.png"
 import costs from "@/assets/screens/costs.png"
@@ -58,6 +59,7 @@ const poster = await getImage({ src: heroPoster, width: 960, format: "webp", qua
     <Tour featured={featuredShots} rest={restShots} />
     <KeyboardSection />
     <Trust />
+    <Architecture />
     <Research />
     <QuickStart />
   </main>
