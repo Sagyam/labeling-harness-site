@@ -21,7 +21,7 @@ export const site = {
   url: "https://labeling-harness.sagyamthapa.com.np",
   tagline: "Listen only where the machines disagree.",
   description:
-    "A workbench that turns hours of recorded speech into a verified speech-recognition dataset. Three recognisers draft every clip, the doubtful ones rise to the top, and one person checks them at keyboard speed.",
+    "A data-labelling harness that turns YouTube audio into a verified dataset for fine-tuning speech recognition on code-switched speech. Three recognisers draft every clip, the doubtful ones rise to the top, and you check them at keyboard speed.",
 }
 
 export const nav = [

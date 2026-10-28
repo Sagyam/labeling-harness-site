@@ -30,14 +30,6 @@ const guarantees = [
   },
 ]
 
-const numbers = [
-  { value: "2,500+", label: "automated tests, run against a real Postgres" },
-  { value: "95", label: "design decisions on record, each with its reason and reversal cost" },
-  { value: "60+", label: "API endpoints" },
-  { value: "3 + 1", label: "recognisers per clip (ElevenLabs, Microsoft, Google), plus a fusion model" },
-  { value: "342", label: "recordings labelled with it so far" },
-]
-
 const stack = [
   "Python 3.13",
   "FastAPI",
@@ -69,31 +61,19 @@ export function Trust() {
         ))}
       </ul>
 
-      <div className="mt-20 grid gap-10 lg:grid-cols-[1.2fr_1fr]">
-        <div>
-          <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">By the numbers</h3>
-          <dl className="mt-5 divide-y divide-white/5 border-y border-white/5">
-            {numbers.map((n) => (
-              <div key={n.label} className="flex items-baseline gap-5 py-4">
-                <dt className="order-2 text-sm text-muted-foreground">{n.label}</dt>
-                <dd className="order-1 w-20 shrink-0 font-heading text-2xl font-bold tracking-tight">{n.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <div>
-          <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Stack</h3>
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {stack.map((tech) => (
-              <li key={tech}>
-                <Badge className="h-6 bg-teal-ink px-2.5 text-teal">{tech}</Badge>
-              </li>
-            ))}
-          </ul>
-          <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-            ONNX Runtime handles forced alignment and voice prints on the CPU; speaker diarization runs on Modal GPUs.
-          </p>
-        </div>
+      <div className="mt-20 max-w-3xl">
+        <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Stack</h3>
+        <ul className="mt-5 flex flex-wrap gap-2">
+          {stack.map((tech) => (
+            <li key={tech}>
+              <Badge className="h-6 bg-teal-ink px-2.5 text-teal">{tech}</Badge>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+          ONNX Runtime handles forced alignment and voice prints on the CPU; speaker diarization runs on Modal GPUs.
+          Recognisers: ElevenLabs, Microsoft and Google, with a reasoning model to fuse their drafts.
+        </p>
       </div>
     </section>
   )

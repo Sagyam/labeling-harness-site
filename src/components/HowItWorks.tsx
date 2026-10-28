@@ -25,8 +25,8 @@ export function Why() {
   return (
     <section id="why" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
       <SectionHeading eyebrow="Why" title="Checking is faster than typing.">
-        Built for one fast annotator and for code-switched speech: its first corpus is Nepali–English podcasts, with
-        English written in Latin and Nepali in Devanagari.
+        Built for one fast annotator and for code-switched speech, where off-the-shelf recognisers struggle most.
+        Out of the box it targets Nepali–English: English in Latin script, Nepali in Devanagari.
       </SectionHeading>
       <div className="mt-12 grid gap-4 md:grid-cols-3">
         {reasons.map(({ icon: Icon, title, body }) => (

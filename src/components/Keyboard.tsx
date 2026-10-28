@@ -59,8 +59,8 @@ export function KeyboardSection() {
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
             <SectionHeading eyebrow="Keyboard" title="Listen. Enter. Next.">
-              Most clips are right, so the usual move is three keys. On a measured run the median clip took 1.7
-              seconds to decide.
+              Most drafts are right, so the usual move is two keys and the queue advances on its own. The mouse is
+              optional.
             </SectionHeading>
             <div className="mt-10 flex items-end gap-3 font-mono" aria-hidden="true">
               {[

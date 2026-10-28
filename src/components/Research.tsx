@@ -6,9 +6,11 @@ import { cn } from "@/lib/utils"
 
 const corpus = [
   { value: "342", label: "recordings: podcasts, interviews, news, reels" },
-  { value: "57 h", label: "train and val, labelled with the harness" },
-  { value: "3.8 h", label: "gold test set, 966 clips, every one verified by ear" },
-  { value: "0", label: "gold speakers who also appear in training" },
+  { value: "61 h", label: "labelled, over 17,000 clips" },
+  { value: "1.7 s", label: "median time to decide a clip, on a measured run" },
+  { value: "76%", label: "of clips accepted as drafted" },
+  { value: "57 h", label: "train and val" },
+  { value: "3.8 h", label: "gold test set, 966 clips, every one verified by ear, no speaker shared with training" },
 ]
 
 // Folded word error on gold, from docs/nepanglish/README.md.
@@ -41,8 +43,9 @@ export function Research() {
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-2 lg:items-center">
         <div>
           <SectionHeading eyebrow="Case study: Nepanglish" title="Nepali sentences full of English words.">
-            The harness labelled a Nepali–English podcast corpus that no off-the-shelf recogniser writes reliably:
-            English in Latin, Nepali in Devanagari, switching mid-sentence.
+            What one person built with the harness: a Nepali–English corpus collected from YouTube, which no
+            off-the-shelf recogniser writes reliably. English in Latin, Nepali in Devanagari, switching
+            mid-sentence.
           </SectionHeading>
           <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6">
             {corpus.map((c) => (

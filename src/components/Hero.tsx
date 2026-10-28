@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen } from "lucide-react"
+import { ArrowRight, BookOpen, CirclePlay, Download, GitCompareArrows } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import { GithubIcon, Logo } from "@/components/Logo"
 import { cn } from "@/lib/utils"
@@ -37,11 +37,10 @@ export function SiteHeader() {
   )
 }
 
-const stats = [
-  { value: "1.7 s", label: "median time to decide a clip" },
-  { value: "76%", label: "of clips accepted as drafted" },
-  { value: "61 h", label: "of speech labelled with it" },
-  { value: "17,000+", label: "clips verified or screened" },
+const flow = [
+  { icon: CirclePlay, title: "Bring your audio", body: "A YouTube link or an audio file. The harness starts empty." },
+  { icon: GitCompareArrows, title: "Machines draft", body: "Three recognisers transcribe each clip; their disagreement ranks the queue." },
+  { icon: Download, title: "Export a dataset", body: "Verified train, val and gold splits, ready to fine-tune an ASR model." },
 ]
 
 export function Hero({ poster }: { poster: string }) {
@@ -52,14 +51,15 @@ export function Hero({ poster }: { poster: string }) {
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Logo className="size-16 drop-shadow-[0_8px_30px_rgb(28_138_132/0.35)] sm:size-20" id="hero-logo" />
           <p className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-teal" />A workbench for speech-recognition datasets
+            <span className="size-1.5 rounded-full bg-teal" />A data-labelling harness for code-switched speech
           </p>
           <h1 className="mt-6 font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl">
             Listen only where the <span className="text-teal">machines disagree</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
-            Labeling Harness turns hours of recorded speech into a verified dataset. Three recognisers draft every
-            clip, the doubtful ones rise to the top, and one person checks them at keyboard speed.
+            Turn YouTube audio into a verified dataset for fine-tuning a speech-recognition model on speech that
+            switches languages mid-sentence. Three recognisers draft every clip, the doubtful ones rise to the top,
+            and you check them at keyboard speed.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -109,18 +109,21 @@ export function Hero({ poster }: { poster: string }) {
             </video>
           </div>
           <figcaption className="mt-3 text-center text-xs text-muted-foreground">
-            Recorded on an invented demo corpus. No real recordings appear on this page.
+            Recorded on an invented demo corpus. A fresh clone starts empty: you bring the audio.
           </figcaption>
         </figure>
 
-        <dl className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse bg-background p-5 sm:p-6">
-              <dt className="mt-1 text-sm text-muted-foreground">{s.label}</dt>
-              <dd className="font-heading text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{s.value}</dd>
-            </div>
+        <ol className="mx-auto mt-14 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-3">
+          {flow.map(({ icon: Icon, title, body }) => (
+            <li key={title} className="flex gap-4 bg-background p-5 sm:p-6">
+              <Icon className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />
+              <div>
+                <p className="font-heading font-semibold">{title}</p>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{body}</p>
+              </div>
+            </li>
           ))}
-        </dl>
+        </ol>
       </div>
     </section>
   )

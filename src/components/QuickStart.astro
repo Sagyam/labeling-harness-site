@@ -3,10 +3,10 @@ import { BookOpen, FlaskConical, Terminal } from "lucide-react"
 import { SectionHeading } from "@/components/SectionHeading"
 import { links } from "@/lib/site"
 
-const commands = `git clone https://github.com/Sagyam/labeling-harness.git
+const commands = `git clone https://github.com/Sagyam/labeling-harness
 cd labeling-harness
 cp .env.example .env
-docker compose up --build   # Postgres, MinIO, API on :8000, app on :5173`
+docker compose up --build`
 
 const escape = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;")
 // One line per command; a trailing "# note" is dimmed. Built as a string so <pre> keeps no template whitespace.
@@ -20,19 +20,20 @@ const highlighted = commands
   .join("\n")
 
 const next = [
-  { icon: FlaskConical, title: "Try it for free", body: "Load the invented demo corpus into its own database, or set dry_run in config/llm_routes.yaml.", href: links.demo },
+  { icon: FlaskConical, title: "Try it for free", body: "Every clip costs three paid recogniser calls. Load the demo corpus or set dry_run to look around first.", href: links.demo },
   { icon: BookOpen, title: "Read the guide", body: "Every page, with a screenshot and what each key does.", href: links.guide },
-  { icon: Terminal, title: "Operations", body: "Configuration, scripts and the 2,500-test suite.", href: links.operations },
+  { icon: Terminal, title: "Operations", body: "Configuration, command-line scripts and the test suite.", href: links.operations },
 ]
 ---
 
 <section id="start" class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
   <SectionHeading eyebrow="Quick start" title="Up in one command.">
-    Everything runs in Docker Compose. Ingest calls paid recognisers, three per clip, so start with the demo corpus
-    or a dry run.
+    A fresh clone is an empty harness. Add your recogniser keys (ElevenLabs, Google Vertex, OpenRouter) to
+    <code class="font-mono text-base text-foreground">.env</code>, start it, and paste your first YouTube link on the
+    Ingest page.
   </SectionHeading>
   <div class="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-    <div class="overflow-hidden rounded-xl border border-white/10 bg-card/80">
+    <div class="self-start overflow-hidden rounded-xl border border-white/10 bg-card/80">
       <div class="flex h-10 items-center justify-between border-b border-white/5 px-4">
         <span class="font-mono text-xs text-muted-foreground">bash</span>
         <button
@@ -43,9 +44,10 @@ const next = [
           Copy
         </button>
       </div>
-      <pre class="overflow-x-auto p-5 font-mono text-[13px] leading-7"><code set:html={highlighted} /></pre>
+      <pre class="px-5 py-4 font-mono text-[13px] leading-6 break-all whitespace-pre-wrap"><code set:html={highlighted} /></pre>
       <p class="border-t border-white/5 px-5 py-3 text-sm text-muted-foreground">
-        Then open <span class="font-mono text-foreground">http://localhost:5173</span>.
+        Then open <span class="font-mono text-foreground">localhost:5173</span>. Postgres, MinIO and the API start
+        alongside it.
       </p>
     </div>
     <ul class="grid content-start gap-3">
