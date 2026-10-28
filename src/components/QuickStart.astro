@@ -1,0 +1,84 @@
+---
+import { BookOpen, FlaskConical, Terminal } from "lucide-react"
+import { SectionHeading } from "@/components/SectionHeading"
+import { links } from "@/lib/site"
+
+const commands = `git clone https://github.com/Sagyam/labeling-harness.git
+cd labeling-harness
+cp .env.example .env
+docker compose up --build   # Postgres, MinIO, API on :8000, app on :5173`
+
+const escape = (text: string) => text.replace(/&/g, "&amp;").replace(/</g, "&lt;")
+// One line per command; a trailing "# note" is dimmed. Built as a string so <pre> keeps no template whitespace.
+const highlighted = commands
+  .split("\n")
+  .map((line) => {
+    const [cmd, comment] = line.split(/(?=\s+# )/)
+    const note = comment ? `<span class="text-muted-foreground">${escape(comment)}</span>` : ""
+    return `<span class="select-none text-teal">$ </span>${escape(cmd)}${note}`
+  })
+  .join("\n")
+
+const next = [
+  { icon: FlaskConical, title: "Try it for free", body: "Load the invented demo corpus into its own database, or set dry_run in config/llm_routes.yaml.", href: links.demo },
+  { icon: BookOpen, title: "Read the guide", body: "Every page, with a screenshot and what each key does.", href: links.guide },
+  { icon: Terminal, title: "Operations", body: "Configuration, scripts and the 2,500-test suite.", href: links.operations },
+]
+---
+
+<section id="start" class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+  <SectionHeading eyebrow="Quick start" title="Up in one command.">
+    Everything runs in Docker Compose. Ingest calls paid recognisers, three per clip, so start with the demo corpus
+    or a dry run.
+  </SectionHeading>
+  <div class="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
+    <div class="overflow-hidden rounded-xl border border-white/10 bg-card/80">
+      <div class="flex h-10 items-center justify-between border-b border-white/5 px-4">
+        <span class="font-mono text-xs text-muted-foreground">bash</span>
+        <button
+          type="button"
+          data-copy={commands}
+          class="rounded px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+        >
+          Copy
+        </button>
+      </div>
+      <pre class="overflow-x-auto p-5 font-mono text-[13px] leading-7"><code set:html={highlighted} /></pre>
+      <p class="border-t border-white/5 px-5 py-3 text-sm text-muted-foreground">
+        Then open <span class="font-mono text-foreground">http://localhost:5173</span>.
+      </p>
+    </div>
+    <ul class="grid content-start gap-3">
+      {next.map(({ icon: Icon, title, body, href }) => (
+        <li>
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex gap-4 rounded-xl border border-white/10 p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+          >
+            <Icon className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />
+            <span>
+              <span class="block font-heading font-semibold group-hover:text-primary">{title}</span>
+              <span class="mt-1 block text-sm text-muted-foreground">{body}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<script>
+  for (const button of document.querySelectorAll<HTMLButtonElement>("[data-copy]")) {
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy ?? "")
+        button.textContent = "Copied"
+      } catch {
+        button.textContent = "Press Ctrl+C"
+      }
+      setTimeout(() => (button.textContent = "Copy"), 1600)
+    })
+  }
+</script>

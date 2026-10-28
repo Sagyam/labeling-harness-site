@@ -1,0 +1,65 @@
+---
+import { getImage } from "astro:assets"
+import Layout from "@/layouts/Layout.astro"
+import QuickStart from "@/components/QuickStart.astro"
+import { Footer } from "@/components/Footer"
+import { Hero, SiteHeader } from "@/components/Hero"
+import { HowItWorks, Why } from "@/components/HowItWorks"
+import { KeyboardSection } from "@/components/Keyboard"
+import { Research } from "@/components/Research"
+import { type Shot, Tour } from "@/components/Tour"
+import { Trust } from "@/components/Trust"
+import heroPoster from "@/assets/hero-poster.png"
+import analytics from "@/assets/screens/analytics.png"
+import costs from "@/assets/screens/costs.png"
+import editor from "@/assets/screens/editor.png"
+import episodes from "@/assets/screens/episodes.png"
+import exportPage from "@/assets/screens/export.png"
+import ingest from "@/assets/screens/ingest.png"
+import modelClips from "@/assets/screens/model-clips.png"
+import models from "@/assets/screens/models.png"
+import rulebook from "@/assets/screens/rulebook.png"
+import triage from "@/assets/screens/triage.png"
+import voices from "@/assets/screens/voices.png"
+
+// Copy follows docs/harness/guide.md in the harness repository.
+const featured = [
+  { id: "triage", img: triage, title: "Triage", anchor: "triage", body: "The most doubtful clip first, with the reason it is there. Red chips mark drafts that failed a check." },
+  { id: "editor", img: editor, title: "Editor", anchor: "editor", body: "Waveform, karaoke playback, what each recogniser heard, and a live diff against the draft." },
+]
+const rest = [
+  { id: "ingest", img: ingest, title: "Ingest", anchor: "ingest", body: "A YouTube link or a file in; a background queue that resumes after a crash." },
+  { id: "analytics", img: analytics, title: "Analytics", anchor: "analytics", body: "What the corpus covers and what is missing: speakers, topics, genres, noise." },
+  { id: "voices", img: voices, title: "Voices", anchor: "voices", body: "Every speaker, followed across recordings by voice, anonymously." },
+  { id: "models", img: models, title: "Models", anchor: "models", body: "A fine-tuned model's error rate, split by cause and scored against the labels." },
+  { id: "model-clips", img: modelClips, title: "Model clips", anchor: "models", body: "Which clips it got wrong, by genre and by recording condition." },
+  { id: "episodes", img: episodes, title: "Episodes", anchor: "episodes", body: "Every recording, its speakers, and how much of it is labelled." },
+  { id: "export", img: exportPage, title: "Export", anchor: "export", body: "Train, val and gold with a checksummed manifest; the same inputs give the same bytes." },
+  { id: "costs", img: costs, title: "Cost tracker", anchor: "cost-tracker", body: "Every paid model call, by vendor, route and model." },
+  { id: "rulebook", img: rulebook, title: "Rulebook", anchor: "rulebook", body: "Which spellings count as the same word when transcripts are compared." },
+]
+
+async function toShot({ img, ...meta }: (typeof rest)[number], sizes: string): Promise<Shot> {
+  const image = await getImage({ src: img, widths: [480, 720, 960, 1440], format: "webp", quality: 78 })
+  return { ...meta, src: image.src, srcSet: image.srcSet.attribute, sizes }
+}
+
+const featuredShots = await Promise.all(featured.map((s) => toShot(s, "(min-width: 1152px) 560px, (min-width: 768px) 50vw, 100vw")))
+const restShots = await Promise.all(rest.map((s) => toShot(s, "(min-width: 1152px) 370px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw")))
+const poster = await getImage({ src: heroPoster, width: 960, format: "webp", quality: 70 })
+---
+
+<Layout>
+  <SiteHeader />
+  <main id="main">
+    <Hero poster={poster.src} />
+    <Why />
+    <HowItWorks />
+    <Tour featured={featuredShots} rest={restShots} />
+    <KeyboardSection />
+    <Trust />
+    <Research />
+    <QuickStart />
+  </main>
+  <Footer />
+</Layout>

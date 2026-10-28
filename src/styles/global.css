@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "@fontsource-variable/work-sans";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/noto-sans-devanagari";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: "Work Sans Variable", "Noto Sans Devanagari Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Space Grotesk Variable", "Noto Sans Devanagari Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-teal: var(--teal);
+  --color-teal-ink: var(--teal-ink);
+  --color-amber: var(--amber);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+}
+
+/* The palette of sagyamthapa.com.np, plus the harness's own teal and amber. */
+:root {
+  color-scheme: dark;
+  --background: hsl(222 84% 5%);
+  --foreground: hsl(210 40% 98%);
+  --card: hsl(215 50% 9%);
+  --card-foreground: hsl(210 40% 98%);
+  --popover: hsl(215 50% 12%);
+  --popover-foreground: hsl(210 40% 98%);
+  --primary: hsl(200 85% 65%);
+  --primary-foreground: hsl(215 50% 12%);
+  --secondary: hsl(217 33% 17%);
+  --secondary-foreground: hsl(210 40% 98%);
+  --muted: hsl(217 33% 17%);
+  --muted-foreground: hsl(215 20% 65%);
+  --accent: hsl(217 33% 22%);
+  --accent-foreground: hsl(210 40% 98%);
+  --destructive: hsl(0 72% 62%);
+  --border: hsl(217 33% 17%);
+  --input: hsl(217 33% 17%);
+  --ring: hsl(200 85% 65%);
+  --radius: 0.5rem;
+  --teal: #5de7d3;
+  --teal-ink: #132d43;
+  --amber: #f2b134;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply scroll-smooth font-sans;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--teal) 30%, transparent);
+  }
+}
+
+@layer components {
+  /* The wavy underline the editor puts under a word the recognisers heard differently. */
+  .doubt {
+    text-decoration: underline wavy var(--amber);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 5px;
+  }
+  .kbd {
+    @apply inline-flex h-6 min-w-6 whitespace-nowrap items-center justify-center rounded border border-white/15 bg-white/5 px-1.5 font-mono text-xs text-foreground shadow-[inset_0_-1px_0_rgb(255_255_255/0.08)];
+  }
+  .hero-glow {
+    background:
+      radial-gradient(60% 50% at 50% 0%, color-mix(in oklab, var(--teal) 14%, transparent), transparent 70%),
+      radial-gradient(40% 30% at 85% 10%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
