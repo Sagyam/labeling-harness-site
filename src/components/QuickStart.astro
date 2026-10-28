@@ -26,7 +26,7 @@ const next = [
 ]
 ---
 
-<section id="start" class="border-t border-white/5 bg-white/[0.015]">
+<section id="start" class="border-t border-edge/5 bg-edge/[0.015]">
 <div class="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
   <SectionHeading eyebrow="Quick start" title="Up in one command.">
     A fresh clone is an empty harness. Add your recogniser keys (ElevenLabs, Google Vertex, OpenRouter) to
@@ -34,19 +34,19 @@ const next = [
     Ingest page.
   </SectionHeading>
   <div class="mt-12 grid gap-6 lg:grid-cols-[1.4fr_1fr]">
-    <div class="self-start overflow-hidden rounded-xl border border-white/10 bg-card/80">
-      <div class="flex h-10 items-center justify-between border-b border-white/5 px-4">
+    <div class="self-start overflow-hidden rounded-xl border border-edge/10 bg-card/80">
+      <div class="flex h-10 items-center justify-between border-b border-edge/5 px-4">
         <span class="font-mono text-xs text-muted-foreground">bash</span>
         <button
           type="button"
           data-copy={commands}
-          class="rounded px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-white/5 hover:text-foreground"
+          class="rounded px-2 py-1 font-mono text-xs text-muted-foreground transition-colors hover:bg-edge/5 hover:text-foreground"
         >
           Copy
         </button>
       </div>
       <pre class="px-5 py-4 font-mono text-[13px] leading-6 break-all whitespace-pre-wrap"><code set:html={highlighted} /></pre>
-      <p class="border-t border-white/5 px-5 py-3 text-sm text-muted-foreground">
+      <p class="border-t border-edge/5 px-5 py-3 text-sm text-muted-foreground">
         Then open <span class="font-mono text-foreground">localhost:5173</span>. Postgres, MinIO and the API start
         alongside it.
       </p>
@@ -58,7 +58,7 @@ const next = [
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex gap-4 rounded-xl border border-white/10 p-4 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+            class="group flex gap-4 rounded-xl border border-edge/10 p-4 transition-all duration-300 hover:border-edge/20 hover:bg-edge/[0.06]"
           >
             <Icon className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />
             <span>

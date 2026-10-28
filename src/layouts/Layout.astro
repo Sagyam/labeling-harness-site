@@ -13,14 +13,26 @@ const ogImage = new URL("/og.png", Astro.site)
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <meta name="theme-color" content="#020817" />
+    <meta name="theme-color" content="#f8fafc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#020817" media="(prefers-color-scheme: dark)" />
+    <script is:inline>
+      // Before first paint: the stored choice, else the OS preference. Kept inline so there is no flash.
+      ;(() => {
+        let choice = null
+        try {
+          choice = localStorage.getItem("theme")
+        } catch {}
+        const dark = choice ? choice === "dark" : matchMedia("(prefers-color-scheme: dark)").matches
+        document.documentElement.classList.toggle("dark", dark)
+      })()
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -46,5 +58,9 @@ const ogImage = new URL("/og.png", Astro.site)
       >Skip to content</a
     >
     <slot />
+    <script>
+      import { initThemeSwitch } from "@/lib/theme"
+      initThemeSwitch()
+    </script>
   </body>
 </html>

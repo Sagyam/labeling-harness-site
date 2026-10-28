@@ -6,7 +6,7 @@ import { links, nav, site } from "@/lib/site"
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-background/75 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-edge/5 bg-background/75 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-6 px-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2.5 font-heading font-bold tracking-tight">
           <Logo className="size-7" id="nav-logo" />
@@ -50,7 +50,7 @@ export function Hero({ poster }: { poster: string }) {
       <div className="mx-auto max-w-6xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24">
         <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
           <Logo className="size-16 drop-shadow-[0_8px_30px_rgb(28_138_132/0.35)] sm:size-20" id="hero-logo" />
-          <p className="mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-muted-foreground">
+          <p className="mt-8 inline-flex items-center gap-2 rounded-full border border-edge/10 bg-edge/5 px-3 py-1 text-xs text-muted-foreground">
             <span className="size-1.5 rounded-full bg-teal" />A data-labelling harness for code-switched speech
           </p>
           <h1 className="mt-6 font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl">
@@ -85,11 +85,11 @@ export function Hero({ poster }: { poster: string }) {
         </div>
 
         <figure className="relative mx-auto mt-16 max-w-5xl">
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-card shadow-2xl shadow-black/50 ring-1 ring-white/5">
-            <div className="flex h-9 items-center gap-2 border-b border-white/5 bg-white/[0.03] px-4">
-              <span className="size-2.5 rounded-full bg-white/15" />
-              <span className="size-2.5 rounded-full bg-white/15" />
-              <span className="size-2.5 rounded-full bg-white/15" />
+          <div className="overflow-hidden rounded-xl border border-edge/10 bg-card shadow-2xl shadow-black/15 dark:shadow-black/50 ring-1 ring-edge/5">
+            <div className="flex h-9 items-center gap-2 border-b border-edge/5 bg-edge/[0.03] px-4">
+              <span className="size-2.5 rounded-full bg-edge/15" />
+              <span className="size-2.5 rounded-full bg-edge/15" />
+              <span className="size-2.5 rounded-full bg-edge/15" />
               <span className="ml-3 truncate font-mono text-[11px] text-muted-foreground">localhost:5173 · editor</span>
             </div>
             <video
@@ -113,7 +113,7 @@ export function Hero({ poster }: { poster: string }) {
           </figcaption>
         </figure>
 
-        <ol className="mx-auto mt-14 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 md:grid-cols-3">
+        <ol className="mx-auto mt-14 grid max-w-5xl gap-px overflow-hidden rounded-xl border border-edge/10 bg-edge/10 md:grid-cols-3">
           {flow.map(({ icon: Icon, title, body }) => (
             <li key={title} className="flex gap-4 bg-background p-5 sm:p-6">
               <Icon className="mt-0.5 size-5 shrink-0 text-teal" aria-hidden="true" />

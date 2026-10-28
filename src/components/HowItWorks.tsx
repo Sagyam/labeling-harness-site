@@ -30,7 +30,7 @@ export function Why() {
       </SectionHeading>
       <div className="mt-12 grid gap-4 md:grid-cols-3">
         {reasons.map(({ icon: Icon, title, body }) => (
-          <Card key={title} className="bg-card/60 transition-colors hover:bg-white/[0.06] hover:ring-white/20">
+          <Card key={title} className="bg-card/60 transition-colors hover:bg-edge/[0.06] hover:ring-edge/20">
             <CardHeader>
               <Icon className="size-5 text-teal" aria-hidden="true" />
               <CardTitle className="mt-3 font-heading text-lg">{title}</CardTitle>
@@ -77,7 +77,7 @@ const hypotheses: { name: string; words: Word[] }[] = [
 function DisagreementDemo() {
   return (
     <div
-      className="rounded-xl border border-white/10 bg-card/80 p-4 font-mono text-xs shadow-xl shadow-black/30 sm:p-5"
+      className="rounded-xl border border-edge/10 bg-card/80 p-4 font-mono text-xs shadow-xl shadow-black/10 dark:shadow-black/30 sm:p-5"
       role="img"
       aria-label="Illustration: three recognisers transcribe the same clip. One writes the English word remittance in Devanagari and another drops the last word, so the fused draft is ranked to the top of the queue with the doubtful word underlined."
     >
@@ -100,7 +100,7 @@ function DisagreementDemo() {
           </li>
         ))}
       </ul>
-      <div className="mt-5 border-t border-white/10 pt-4">
+      <div className="mt-5 border-t border-edge/10 pt-4">
         <div className="flex items-center gap-2 text-muted-foreground">
           <span>fused draft</span>
           <Badge className="h-4 rounded bg-teal-ink px-1.5 font-mono text-[10px] text-teal">disagree 20%</Badge>
@@ -120,14 +120,14 @@ function DisagreementDemo() {
 
 export function HowItWorks() {
   return (
-    <section id="how" className="border-y border-white/5 bg-white/[0.015]">
+    <section id="how" className="border-y border-edge/5 bg-edge/[0.015]">
       <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 sm:py-28 lg:grid-cols-[1fr_1.05fr] lg:items-center">
         <div>
           <SectionHeading eyebrow="How it works" title="One recording, end to end." />
           <ol className="mt-10 space-y-7">
             {steps.map(({ icon: Icon, title, body }, i) => (
               <li key={title} className="flex gap-4">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-teal">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-edge/10 bg-edge/5 text-teal">
                   <Icon className="size-4" aria-hidden="true" />
                 </span>
                 <div>

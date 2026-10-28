@@ -19,9 +19,9 @@ function ShotCard({ shot, featured, eager }: { shot: Shot; featured?: boolean; e
       href={guideAnchor(shot.anchor)}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-xl border border-transparent p-3 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.06] hover:shadow-lg"
+      className="group flex flex-col rounded-xl border border-transparent p-3 transition-all duration-300 hover:border-edge/20 hover:bg-edge/[0.06] hover:shadow-lg"
     >
-      <div className="overflow-hidden rounded-lg border border-white/10 bg-black">
+      <div className="overflow-hidden rounded-lg border border-edge/10 bg-black">
         <img
           src={shot.src}
           srcSet={shot.srcSet}

@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import type { CSSProperties, ReactNode } from "react"
 import { ArrowDown, ArrowDownUp, ArrowLeftRight, ArrowRight, FileAudio, GitBranch, Keyboard, Package } from "lucide-react"
 import type { SimpleIcon } from "simple-icons"
 import {
@@ -28,21 +28,26 @@ import { SectionHeading } from "@/components/SectionHeading"
 import { cn } from "@/lib/utils"
 
 /**
- * A brand mark in its own colour. Mid-tone colours are lifted towards white to read on navy, and
- * near-black ones take the foreground colour.
+ * A brand mark in its own colour, adjusted per theme so it reads on either ground: on navy,
+ * mid-tones are lifted towards white; on white, bright marks are darkened. Near-black marks take
+ * the text colour in both.
  */
 function Brand({ icon, className }: { icon: SimpleIcon; className?: string }) {
+  const hex = `#${icon.hex}`
   const [r, g, b] = [0, 2, 4].map((i) => parseInt(icon.hex.slice(i, i + 2), 16) / 255)
   const luminance = 0.2126 * r + 0.7152 * g + 0.0722 * b
-  const fill =
-    luminance < 0.15 ? "currentColor" : luminance < 0.5 ? `color-mix(in oklab, #${icon.hex} 70%, white)` : `#${icon.hex}`
+  const near = luminance < 0.15
+  const fills = {
+    "--fill-dark": near ? "currentColor" : luminance < 0.5 ? `color-mix(in oklab, ${hex} 70%, white)` : hex,
+    "--fill-light": near ? "currentColor" : luminance > 0.6 ? `color-mix(in oklab, ${hex} 65%, black)` : hex,
+  } as CSSProperties
   return (
     <svg
       viewBox="0 0 24 24"
       role="img"
       aria-label={icon.title}
-      className={cn("size-4 shrink-0", className)}
-      style={{ fill }}
+      className={cn("brand-mark size-4 shrink-0", className)}
+      style={fills}
     >
       <title>{icon.title}</title>
       <path d={icon.path} />
@@ -53,7 +58,7 @@ function Brand({ icon, className }: { icon: SimpleIcon; className?: string }) {
 /** A technology chip: its mark and its name. */
 function Tech({ icon, name, glyph }: { icon?: SimpleIcon; name: string; glyph?: ReactNode }) {
   return (
-    <li className="inline-flex h-7 items-center gap-1.5 rounded-md border border-white/10 bg-white/[0.04] px-2 text-xs text-foreground/90">
+    <li className="inline-flex h-7 items-center gap-1.5 rounded-md border border-edge/10 bg-edge/[0.04] px-2 text-xs text-foreground/90">
       {icon ? <Brand icon={icon} /> : glyph}
       {name}
     </li>
@@ -77,7 +82,7 @@ function Node({
     <div
       className={cn(
         "rounded-xl border bg-card/90 p-4",
-        accent ? "border-teal/40 shadow-[0_0_0_1px_rgb(93_231_211/0.08),0_10px_40px_-12px_rgb(93_231_211/0.25)]" : "border-white/10",
+        accent ? "border-teal/40 shadow-[0_0_0_1px_color-mix(in_oklab,var(--teal)_8%,transparent),0_10px_40px_-12px_color-mix(in_oklab,var(--teal)_25%,transparent)]" : "border-edge/10",
         className,
       )}
     >
@@ -113,7 +118,7 @@ function Column({ label, children, className }: { label: string; children: React
 
 export function Architecture() {
   return (
-    <section id="architecture" className="border-y border-white/5 bg-white/[0.015]">
+    <section id="architecture" className="border-y border-edge/5 bg-edge/[0.015]">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <SectionHeading eyebrow="Architecture" title="Your data stays local. Only clips go to the cloud.">
           Everything that holds your data runs locally under Docker Compose. Only audio clips leave it, to the
@@ -138,7 +143,7 @@ export function Architecture() {
 
           <Flow label="browser" both />
 
-          <div className="relative rounded-2xl border border-dashed border-white/15 p-3 pt-9 sm:p-4 sm:pt-10">
+          <div className="relative rounded-2xl border border-dashed border-edge/15 p-3 pt-9 sm:p-4 sm:pt-10">
             <p className="absolute top-3 left-4 flex items-center gap-2 font-mono text-[11px] text-muted-foreground">
               <Brand icon={siDocker} className="size-3.5" />
               docker compose up

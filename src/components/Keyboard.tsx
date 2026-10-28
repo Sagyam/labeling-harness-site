@@ -36,9 +36,9 @@ function Keys({ keys }: { keys: string[] }) {
 
 function ShortcutList({ title, rows }: { title: string; rows: [string[], string][] }) {
   return (
-    <div className="rounded-xl border border-white/10 bg-card/60 p-5">
+    <div className="rounded-xl border border-edge/10 bg-card/60 p-5">
       <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">{title}</h3>
-      <dl className="mt-4 divide-y divide-white/5">
+      <dl className="mt-4 divide-y divide-edge/5">
         {rows.map(([keys, action]) => (
           <div key={action} className="flex items-center justify-between gap-4 py-2.5">
             <dt className="text-sm text-foreground/90">{action}</dt>
@@ -54,7 +54,7 @@ function ShortcutList({ title, rows }: { title: string; rows: [string[], string]
 
 export function KeyboardSection() {
   return (
-    <section id="keyboard" className="border-y border-white/5 bg-white/[0.015]">
+    <section id="keyboard" className="border-y border-edge/5 bg-edge/[0.015]">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
@@ -70,7 +70,7 @@ export function KeyboardSection() {
                 <div key={key} className="flex items-end gap-3">
                   {i > 0 && <span className="pb-9 text-muted-foreground">→</span>}
                   <div className="flex flex-col items-center gap-2">
-                    <kbd className="flex h-14 min-w-14 items-center justify-center rounded-lg border border-white/15 bg-white/5 px-4 text-sm shadow-[inset_0_-3px_0_rgb(255_255_255/0.08)]">
+                    <kbd className="flex h-14 min-w-14 items-center justify-center rounded-lg border border-edge/15 bg-edge/5 px-4 text-sm shadow-[inset_0_-3px_0_color-mix(in_oklab,var(--edge)_8%,transparent)]">
                       {key}
                     </kbd>
                     <span className="text-xs text-muted-foreground">{label}</span>

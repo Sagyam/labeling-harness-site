@@ -27,9 +27,9 @@ function WerBar({ label, value, tone }: { label: string; value: number; tone: "m
           {value.toFixed(2)}%
         </span>
       </div>
-      <div className="mt-2 h-2.5 rounded-full bg-white/5">
+      <div className="mt-2 h-2.5 rounded-full bg-edge/5">
         <div
-          className={tone === "teal" ? "h-full rounded-full bg-teal" : "h-full rounded-full bg-white/25"}
+          className={tone === "teal" ? "h-full rounded-full bg-teal" : "h-full rounded-full bg-edge/25"}
           style={{ width: `${(value / scale) * 100}%` }}
         />
       </div>
@@ -49,14 +49,14 @@ export function Research() {
           </SectionHeading>
           <dl className="mt-10 grid grid-cols-2 gap-x-6 gap-y-6">
             {corpus.map((c) => (
-              <div key={c.label} className="flex flex-col-reverse">
+              <div key={c.label} className="flex flex-col-reverse justify-end">
                 <dt className="mt-1 text-sm text-muted-foreground">{c.label}</dt>
                 <dd className="font-heading text-2xl font-bold tracking-tight">{c.value}</dd>
               </div>
             ))}
           </dl>
         </div>
-        <div className="rounded-xl border border-white/10 bg-card/60 p-6 sm:p-8">
+        <div className="rounded-xl border border-edge/10 bg-card/60 p-6 sm:p-8">
           <h3 className="text-xs font-bold tracking-widest text-muted-foreground uppercase">Word error on gold</h3>
           <p className="mt-3 font-heading text-xl font-semibold text-balance">
             Fine-tuning a 1.2B-parameter model on the labels cut word error by about a fifth.
